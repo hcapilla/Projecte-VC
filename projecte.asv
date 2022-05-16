@@ -1,44 +1,111 @@
+% Projecte VC
+% Hernán Capilla Urbano, 1462773
+
+%% Limpieza del espacio:
 clear all
 close all
 clc
 
-%%
-load('positivas_struct.mat');
+% %% Escoger nStages
+% load('positivas_struct.mat');
+% 
+% negativeFolder = 'C:\Users\98cap\Documents\GitHub\Projecte-VC\negativo';
+% 
+% NumStages = 10;
+% FAR = 0.000001;
+% 
+% trainCascadeObjectDetector('facedetector_10_000001.xml',positivas, negativeFolder, ...
+%     'NumCascadeStages', NumStages, 'FalseAlarmRate',FAR);
+% 
+% %% nStages auto
+% load('positivas_struct.mat');
+% 
+% negativeFolder = 'C:\Users\98cap\Documents\GitHub\Projecte-VC\negativo';
+% 
+% % NumStages = 4;
+% FAR = 0.25;
+% 
+% trainCascadeObjectDetector('facedetector_def_25.xml',positivas, negativeFolder, ...
+%     'FalseAlarmRate',FAR);
 
-negativeFolder = 'C:\Users\98cap\Documents\GitHub\Projecte-VC\negativo';
+%% CERCA
 
-NumStages = 4;
-FAR = 0.3;
+detector = vision.CascadeObjectDetector('facedetector_4_000001.xml');
 
-trainCascadeObjectDetector('facedetector_4_30.xml',positivas, negativeFolder, ...
-    'NumCascadeStages', NumStages, 'FalseAlarmRate',FAR);
-
-%%
-load('positivas_struct.mat');
-
-negativeFolder = 'C:\Users\98cap\Documents\GitHub\Projecte-VC\negativo';
-
-% NumStages = 4;
-FAR = 0.25;
-
-trainCascadeObjectDetector('facedetector_def_15.xml',positivas, negativeFolder, ...
-    'FalseAlarmRate',FAR);
-
-%% 
-
-detector = vision.CascadeObjectDetector('facedetector_7_5.xml');
-
-I = imread("positivo\1.jpg");
+I = imread("positivo\10.jpg");
 
 bbox = step(detector, I);
 
-J = insertShape(I, 'Rectangle',  bbox);
-imshow(J)
+J = insertObjectAnnotation(I, 'rectangle', bbox, 'HERNÁN', 'LineWidth', 10, 'TextBoxOpacity', 0.9,'FontSize', 40);
+figure; imshow(J); title('CERCA');
 
 release(detector)
 
+%% LEJOS
 
+detector = vision.CascadeObjectDetector('facedetector_4_000001.xml');
 
+I = imread("positivo\30.jpg");
+
+bbox = step(detector, I);
+
+J = insertObjectAnnotation(I, 'rectangle', bbox, 'HERNÁN', 'LineWidth', 10, 'TextBoxOpacity', 0.9,'FontSize', 40);
+figure; imshow(J); title('LEJOS');
+
+release(detector)
+%% VARIAS PERSONAS 1
+
+detector = vision.CascadeObjectDetector('facedetector_4_000001.xml');
+
+I = imread("objetivo\1.jpg");
+
+bbox = step(detector, I);
+
+J_v1 = insertObjectAnnotation(I, 'rectangle', bbox, 'HERNÁN', 'LineWidth', 10, 'TextBoxOpacity', 0.9,'FontSize', 40);
+figure; imshow(J_v1); title('VARIAS PERSONAS 1');
+
+release(detector)
+
+%% VARIAS PERSONAS 2
+
+detector = vision.CascadeObjectDetector('facedetector_4_000001.xml');
+
+I = imread("objetivo\2.jpg");
+
+bbox = step(detector, I);
+
+J = insertObjectAnnotation(I, 'rectangle', bbox, 'HERNÁN', 'LineWidth', 10, 'TextBoxOpacity', 0.9,'FontSize', 40);
+figure; imshow(J); title('VARIAS PERSONAS 2');
+
+release(detector)
+
+%% VARIAS PERSONAS 3
+
+detector = vision.CascadeObjectDetector('facedetector_4_000001.xml');
+
+I = imread("objetivo\3.jpg");
+
+bbox = step(detector, I);
+
+J = insertObjectAnnotation(I, 'rectangle', bbox, 'HERNÁN', 'LineWidth', 10, 'TextBoxOpacity', 0.9,'FontSize', 40);
+figure; imshow(J); title('VARIAS PERSONAS 3');
+
+release(detector)
+
+montage()
+%% DATASET POCHO
+
+% detector = vision.CascadeObjectDetector('facedetector_4_000001.xml');
+% 
+% I = imread("datasetPocho\1.jpg");
+% 
+% bbox = step(detector, I);
+% 
+% J = insertObjectAnnotation(I, 'rectangle', bbox, 'HERNÁN', 'LineWidth', 10, 'TextBoxOpacity', 0.9,'FontSize', 40);
+% 
+% figure; imshow(J); title('NOT WORKING');
+% 
+% release(detector)
 
 
 
