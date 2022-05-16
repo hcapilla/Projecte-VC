@@ -24,7 +24,7 @@ FAR = 0.25;
 trainCascadeObjectDetector('facedetector_def_25.xml',positivas, negativeFolder, ...
     'FalseAlarmRate',FAR);
 
-%% 
+%% IT WORKS
 
 detector = vision.CascadeObjectDetector('facedetector_4_000001.xml');
 
@@ -37,7 +37,18 @@ imshow(J)
 
 release(detector)
 
+%% Let's see
 
+detector = vision.CascadeObjectDetector('facedetector_4_000001.xml');
+
+I = imread("objetivo\3.jpg");
+
+bbox = step(detector, I);
+
+J = insertShape(I, 'Rectangle',  bbox, 'LineWidth',10);
+imshow(J)
+
+release(detector)
 
 
 
