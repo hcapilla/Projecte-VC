@@ -7,10 +7,10 @@ load('positivas_struct.mat');
 
 negativeFolder = 'C:\Users\98cap\Documents\GitHub\Projecte-VC\negativo';
 
-NumStages = 10;
-FAR = 0.000001;
+NumStages = 4;
+FAR = 0.3;
 
-trainCascadeObjectDetector('facedetector_10_000001.xml',positivas, negativeFolder, ...
+trainCascadeObjectDetector('facedetector_4_30.xml',positivas, negativeFolder, ...
     'NumCascadeStages', NumStages, 'FalseAlarmRate',FAR);
 
 %%
@@ -21,18 +21,18 @@ negativeFolder = 'C:\Users\98cap\Documents\GitHub\Projecte-VC\negativo';
 % NumStages = 4;
 FAR = 0.25;
 
-trainCascadeObjectDetector('facedetector_def_25.xml',positivas, negativeFolder, ...
+trainCascadeObjectDetector('facedetector_def_15.xml',positivas, negativeFolder, ...
     'FalseAlarmRate',FAR);
 
 %% 
 
-detector = vision.CascadeObjectDetector('facedetector_4_000001.xml');
+detector = vision.CascadeObjectDetector('facedetector_7_5.xml');
 
-I = imread("positivo\10.jpg");
+I = imread("positivo\1.jpg");
 
 bbox = step(detector, I);
 
-J = insertShape(I, 'Rectangle',  bbox, 'LineWidth',10);
+J = insertShape(I, 'Rectangle',  bbox);
 imshow(J)
 
 release(detector)
