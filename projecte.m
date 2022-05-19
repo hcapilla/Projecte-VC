@@ -12,9 +12,9 @@ clc
 % negativeFolder = 'C:\Users\98cap\Documents\GitHub\Projecte-VC\negativo';
 % 
 % NumStages = 10;
-% FAR = 0.000001;
+% FAR = 0.0000001;
 % 
-% trainCascadeObjectDetector('facedetector_10_000001.xml',positivas, negativeFolder, ...
+% trainCascadeObjectDetector('facedetector_10_0000001.xml',positivas, negativeFolder, ...
 %     'NumCascadeStages', NumStages, 'FalseAlarmRate',FAR);
 
 %% nStages auto
@@ -94,6 +94,19 @@ figure; imshow(J_v3); title('VARIAS PERSONAS 3');
 release(detector)
 
 montage({J_v1, J_v2, J_v3}, 'Size', [1 3])
+
+%% CAMBIO PARADIGMA
+
+detector = vision.CascadeObjectDetector('facedetector_4_000001.xml');
+
+I = imread("objetivo\6.jpg");
+
+bbox = step(detector, I);
+
+J_v2 = insertObjectAnnotation(I, 'rectangle', bbox, 'HERNÁN', 'LineWidth', 10, 'TextBoxOpacity', 0.9,'FontSize', 40);
+figure; imshow(J_v2); title('CAMBIO ENTORNO');
+
+release(detector)
 
 %% DATASET POCHO
 
