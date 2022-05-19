@@ -6,7 +6,7 @@ clear all
 close all
 clc
 
-% %% Escoger nStages
+%% Escoger nStages
 % load('positivas_struct.mat');
 % 
 % negativeFolder = 'C:\Users\98cap\Documents\GitHub\Projecte-VC\negativo';
@@ -16,8 +16,8 @@ clc
 % 
 % trainCascadeObjectDetector('facedetector_10_000001.xml',positivas, negativeFolder, ...
 %     'NumCascadeStages', NumStages, 'FalseAlarmRate',FAR);
-% 
-% %% nStages auto
+
+%% nStages auto
 % load('positivas_struct.mat');
 % 
 % negativeFolder = 'C:\Users\98cap\Documents\GitHub\Projecte-VC\negativo';
@@ -32,7 +32,7 @@ clc
 
 detector = vision.CascadeObjectDetector('facedetector_4_000001.xml');
 
-I = imread("positivo\10.jpg");
+I = imread("objetivo\4.jpg");
 
 bbox = step(detector, I);
 
@@ -45,7 +45,7 @@ release(detector)
 
 detector = vision.CascadeObjectDetector('facedetector_4_000001.xml');
 
-I = imread("positivo\30.jpg");
+I = imread("objetivo\5.jpg");
 
 bbox = step(detector, I);
 
@@ -93,7 +93,8 @@ figure; imshow(J_v3); title('VARIAS PERSONAS 3');
 
 release(detector)
 
-montage({J_v1, J_v2, J_v3}, 'Size',[1 3])
+montage({J_v1, J_v2, J_v3}, 'Size', [1 3])
+
 %% DATASET POCHO
 
 % detector = vision.CascadeObjectDetector('facedetector_4_000001.xml');
